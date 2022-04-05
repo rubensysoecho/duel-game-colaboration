@@ -51,10 +51,15 @@ public class Duel {
 	}
 
 	public void start() {
-		System.out.println("Duel ha empezado!");
+		System.out.println("Duel has started!");
 		while (!isFinished) {
 			playTurn();
+			if(player.getIsDead() || enemy.getIsDead()) {
+				setIsFinished(true);
+			}
 		}
+		
+		System.out.println("Duel has finished");
 	}
 
 	public void playTurn() {
@@ -67,6 +72,7 @@ public class Duel {
 			System.out.println("E - Right Arm");
 			System.out.println("A - Left Leg");
 			System.out.println("D - Right Leg");
+			System.out.print("Shoot to: ");
 			shoot(input.nextLine().toLowerCase().charAt(0));
 			changeTurn();
 		} else {
@@ -84,6 +90,7 @@ public class Duel {
 		switch (target) {
 		case 'w':
 			System.out.println("Head");
+			enemy.setHealth(0);
 			break;
 			
 		case 's':

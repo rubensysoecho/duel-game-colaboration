@@ -11,6 +11,8 @@ public class Character {
 	private int currentHealth, health, damage, accuracy, dodgeChance, criticalChance;
 	private int healthStat, damageStat, accuracyStat, dodgeChanceStat, criticalChanceStat;
 
+	private boolean isDead;
+
 	public Character(String name, int healthStat, int damageStat, int accuracyStat, int dodgeChanceStat,
 			int criticalChanceStat) {
 		this.name = name;
@@ -29,6 +31,8 @@ public class Character {
 		setAccuracyStat(accuracyStat);
 		setDodgeChanceStat(dodgeChanceStat);
 		setCriticalChanceStat(criticalChanceStat);
+
+		this.isDead = false;
 
 //		this.health = health * 10 + 100;
 //		this.damage = damage * 10 + 100;
@@ -107,7 +111,12 @@ public class Character {
 	}
 
 	public void setHealth(int health) {
-		this.health = health;
+		if (health <= 0) {
+			this.health = 0;
+			setIsDead(true);
+		} else {
+			this.health = health;
+		}
 	}
 
 	public int getDamage() {
@@ -140,6 +149,14 @@ public class Character {
 
 	public void setCriticalChance(int criticalChance) {
 		this.criticalChance = criticalChance;
+	}
+
+	public boolean getIsDead() {
+		return isDead;
+	}
+
+	public void setIsDead(boolean isDead) {
+		this.isDead = isDead;
 	}
 
 	public void showStats() {
