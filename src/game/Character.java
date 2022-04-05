@@ -11,19 +11,79 @@ public class Character {
 	private int currentHealth, health, damage, accuracy, dodgeChance, criticalChance;
 	private int healthStat, damageStat, accuracyStat, dodgeChanceStat, criticalChanceStat;
 
-	public Character(String name, int health, int damage, int accuracy, int dodgeChance, int criticalChance) {
+	public Character(String name, int healthStat, int damageStat, int accuracyStat, int dodgeChanceStat,
+			int criticalChanceStat) {
 		this.name = name;
-		this.healthStat = health; 
-		this.damageStat = damage;
-		this.accuracyStat = accuracy;
-		this.dodgeChanceStat = dodgeChance;
-		this.criticalChanceStat = criticalChance;
-		
-		this.health = health * 10 + 100;
-		this.damage = damage * 10 + 100;
-		this.accuracy = accuracy * 5 + 50;
-		this.dodgeChance = dodgeChance * 2;
-		this.criticalChance = criticalChance * 5;
+//		this.healthStat = health; 
+//		this.damageStat = damage;
+//		this.accuracyStat = accuracy;
+//		this.dodgeChanceStat = dodgeChance;
+//		this.criticalChanceStat = criticalChance;
+
+//		if(healthStat + damageStat + accuracyStat + dodgeChanceStat + criticalChanceStat != 10) {
+//			throw new Exception("Error con stats");
+//		}
+
+		setHealthStat(healthStat);
+		setDamageStat(damageStat);
+		setAccuracyStat(accuracyStat);
+		setDodgeChanceStat(dodgeChanceStat);
+		setCriticalChanceStat(criticalChanceStat);
+
+//		this.health = health * 10 + 100;
+//		this.damage = damage * 10 + 100;
+//		this.accuracy = accuracy * 5 + 50;
+//		this.dodgeChance = dodgeChance * 2;
+//		this.criticalChance = criticalChance * 5;
+	}
+
+	public int getHealthStat() {
+		return healthStat;
+	}
+
+	public void setHealthStat(int healthStat) {
+		this.healthStat = healthStat;
+		setHealth(100 + 10 * healthStat);
+	}
+
+	public int getDamageStat() {
+		return damageStat;
+	}
+
+	public void setDamageStat(int damageStat) {
+		this.damageStat = damageStat;
+		setDamage(100 + 10 * damageStat);
+	}
+
+	public int getAccuracyStat() {
+		return accuracyStat;
+	}
+
+	public void setAccuracyStat(int accuracyStat) {
+		this.accuracyStat = accuracyStat;
+		setAccuracy(50 + 5 * accuracyStat);
+	}
+
+	public int getDodgeChanceStat() {
+		return dodgeChanceStat;
+	}
+
+	public void setDodgeChanceStat(int dodgeChanceStat) {
+		this.dodgeChanceStat = dodgeChanceStat;
+		setDodgeChance(2 * dodgeChanceStat);
+	}
+
+	public void setDodgeChance(int dodgeChance) {
+		this.dodgeChance = dodgeChance;
+	}
+
+	public int getCriticalChanceStat() {
+		return criticalChanceStat;
+	}
+
+	public void setCriticalChanceStat(int criticalChanceStat) {
+		this.criticalChanceStat = criticalChanceStat;
+		setCriticalChance(5 * criticalChanceStat);
 	}
 
 	public String getName() {
