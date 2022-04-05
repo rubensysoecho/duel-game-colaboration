@@ -15,12 +15,11 @@ public class Game {
 		Player player = new Player("Maxim", 3, 3, 2, 1, 1);
 		player.showStats();
 
-
 		Enemy enemy = new Enemy("Oscar", 1, 4, 5, 0, 0);
 		enemy.showStats();
-		
+
 		Duel duel = new Duel(player, enemy);
-		
+
 		duel.start();
 	}
 

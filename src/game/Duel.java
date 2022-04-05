@@ -54,11 +54,11 @@ public class Duel {
 		System.out.println("Duel has started!");
 		while (!isFinished) {
 			playTurn();
-			if(player.getIsDead() || enemy.getIsDead()) {
+			if (player.getIsDead() || enemy.getIsDead()) {
 				setIsFinished(true);
 			}
 		}
-		
+
 		System.out.println("Duel has finished");
 	}
 
@@ -85,30 +85,30 @@ public class Duel {
 	public void changeTurn() {
 		setIsPlayerTurn(!isPlayerTurn);
 	}
-	
+
 	public void shoot(char target) {
 		switch (target) {
 		case 'w':
 			System.out.println("Head");
 			enemy.setHealth(0);
 			break;
-			
+
 		case 's':
 			System.out.println("Body");
 			break;
-			
+
 		case 'q':
 			System.out.println("LA");
 			break;
-		
+
 		case 'e':
 			System.out.println("RA");
 			break;
-			
+
 		case 'a':
 			System.out.println("LL");
 			break;
-			
+
 		case 'd':
 			System.out.println("RL");
 			break;
