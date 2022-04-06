@@ -8,10 +8,12 @@ public class Duel {
 	private boolean isFinished, isPlayerTurn;
 	Scanner input = new Scanner(System.in);
 
+	private Character shooter, opponent;
+
 	public Duel(Player player, Enemy enemy) {
 		this.player = player;
 		this.enemy = enemy;
-		this.isPlayerTurn = true;
+		setIsPlayerTurn(true);
 	}
 
 	public boolean isFinished() {
@@ -44,10 +46,33 @@ public class Duel {
 
 	public void setIsPlayerTurn(boolean isPlayerTurn) {
 		this.isPlayerTurn = isPlayerTurn;
+		if (isPlayerTurn) {
+			setShooter(player);
+			setOpponent(enemy);
+		} else {
+			setShooter(enemy);
+			setOpponent(player);
+		}
 	}
 
 	public void setFinished(boolean isFinished) {
 		this.isFinished = isFinished;
+	}
+
+	public Character getShooter() {
+		return shooter;
+	}
+
+	public void setShooter(Character shooter) {
+		this.shooter = shooter;
+	}
+
+	public Character getOpponent() {
+		return opponent;
+	}
+
+	public void setOpponent(Character opponent) {
+		this.opponent = opponent;
 	}
 
 	public void start() {
@@ -90,11 +115,16 @@ public class Duel {
 		switch (target) {
 		case 'w':
 			System.out.println("Head");
-			enemy.setHealth(0);
+			if (isSuccessfulShot(20)) {
+				opponent.setCurrentHealth(0);
+			}
 			break;
 
 		case 's':
 			System.out.println("Body");
+			if (isSuccessfulShot(50)) {
+				opponent.setCurrentHealth(opponent.getCurrentHealth() - shooter.getDamage());
+			}
 			break;
 
 		case 'q':
@@ -117,5 +147,14 @@ public class Duel {
 			System.out.println("Body");
 			break;
 		}
+		System.out.println("Current Health: " + opponent.getCurrentHealth());
+	}
+
+	private boolean isSuccessfulShot(int partHitChance) {
+		int accuracyTotal = (shooter.getAccuracy() - opponent.getDodgeChance()) * partHitChance / 100;
+		double successPosibility = Math.random() * 100;
+		System.out.println(successPosibility);
+		System.out.println(accuracyTotal);
+		return successPosibility < accuracyTotal;
 	}
 }

@@ -16,7 +16,7 @@ public class Game {
 //		tu.stats();
 
 		// Player has 10 point to assign
-		main_menu();
+		//main_menu();
 		Player player = new Player("Maxim", 3, 3, 2, 1, 1);
 		player.showStats();
 

@@ -32,6 +32,7 @@ public class Character {
 		setDodgeChanceStat(dodgeChanceStat);
 		setCriticalChanceStat(criticalChanceStat);
 
+		setCurrentHealth(health);
 		this.isDead = false;
 
 //		this.health = health * 10 + 100;
@@ -103,7 +104,12 @@ public class Character {
 	}
 
 	public void setCurrentHealth(int currentHealth) {
-		this.currentHealth = currentHealth;
+		if (currentHealth <= 0) {
+			this.currentHealth = 0;
+			setIsDead(true);
+		} else {
+			this.currentHealth = currentHealth;
+		}
 	}
 
 	public int getHealth() {
@@ -111,12 +117,7 @@ public class Character {
 	}
 
 	public void setHealth(int health) {
-		if (health <= 0) {
-			this.health = 0;
-			setIsDead(true);
-		} else {
-			this.health = health;
-		}
+		this.health = health;
 	}
 
 	public int getDamage() {
