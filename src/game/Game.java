@@ -113,7 +113,7 @@ public class Game {
 
 			points--;
 		}
-<<<<<<< Updated upstream
+
 		System.out.println("|----ELIGE UN ARMA----|");
 		System.out.println("|A- Rifle de cerrojo |");
 		System.out.println("|B- Escopeta         |");
@@ -146,13 +146,6 @@ public class Game {
 		case "n":
 			break;
 		}
-		
-		player.setHealthStat(healthStat); player.setDamageStat(damageStat);
-		player.setAccuracyStat(accuracyStat); player.setDodgeChanceStat(dodgeChanceStat);
-		player.setCriticalChanceStat(criticalChanceStat);
-		
-		player.showStats();
-=======
 
 		player.setHealthStat(healthStat);
 		player.setDamageStat(damageStat);
@@ -185,7 +178,6 @@ public class Game {
 
 		player.showStats();
 
->>>>>>> Stashed changes
 	}
 
 //	public final Scanner entrada = new Scanner(System.in);
