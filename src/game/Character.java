@@ -165,10 +165,10 @@ public class Character {
 
 	public void showStats() {
 		System.out.println("|---" + this.name + "---|");
-		System.out.println("Health: " + this.health);
-		System.out.println("Damage: " + this.damage);
-		System.out.println("Accuracy: " + this.accuracy);
-		System.out.println("Dodge Chance: " + this.dodgeChance);
-		System.out.println("Critical Chance: " + this.criticalChance);
+		System.out.println("Vida: " + this.health);
+		System.out.println("Daño: " + this.damage);
+		System.out.println("Precisión: " + this.accuracy  + "%");
+		System.out.println("Oportunidad Esquivar: " + this.dodgeChance  + "%");
+		System.out.println("Probabilidad Golpe Crítico: " + this.criticalChance + "%");
 	}
 }

@@ -129,12 +129,8 @@ public class Game {
 				+ "▓█▓▓▓█▓═▒░▒░░██████████████▓████████████\r\n"
 				+ "▓█▓▓▓▒█░░▒═░██████▓█▓█▓█▓▓▓▒█▒▒▒▒▒██████\r\n"
 				+ "");
-		System.out.println("|<><><>"+name.toUpperCase()+"<><><>|");
-		System.out.println("|Vida--> "+player.getHealth());
-		System.out.println("|Daño--> "+player.getDamage());
-		System.out.println("|Precisión--> "+player.getAccuracy());
-		System.out.println("|Agilidad--> "+player.getDodgeChance()+"%");
-		System.out.println("|Prob. critico--> "+player.getCriticalChance()+"%");
+		
+		player.showStats();
 		
 	}
 
