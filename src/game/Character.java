@@ -31,7 +31,6 @@ public class Character {
 		setAccuracyStat(accuracyStat);
 		setDodgeChanceStat(dodgeChanceStat);
 		setCriticalChanceStat(criticalChanceStat);
-
 		setCurrentHealth(health);
 		this.isDead = false;
 

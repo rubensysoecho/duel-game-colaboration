@@ -16,7 +16,7 @@ public class Game {
 //		tu.stats();
 
 		// Player has 10 point to assign
-		//main_menu();
+		main_menu();
 		Player player = new Player("Maxim", 3, 3, 2, 1, 1);
 		player.showStats();
 
@@ -28,7 +28,7 @@ public class Game {
 		duel.start();
 	}
 	
-	public static void main_menu()	{
+	public static Player main_menu()	{
 		System.out.println("@@@@@@@@@@@@@@@@@");
 		System.out.println("@               @");
 		System.out.println("@   DUEL GAME   @");
@@ -43,11 +43,51 @@ public class Game {
 		System.out.println(" ---------------------------------------");
 		System.out.print("|Nombre: ");
 		String name = input.next();
-		System.out.println("|----TIENES 10 PUNTOS PARA DISTRIBUIR----|");
-		System.out.println("|Vida--> ");
-		System.out.println("");
-		System.out.println();
 		
+		int points = 10;
+		int healthStat = 0, damageStat = 0, accuracyStat = 0, dodgeChanceStat = 0, criticalChanceStat = 0;
+		while (points > 0)	{
+			System.out.println();
+			System.out.println("|----TIENES "+points+" PUNTOS PARA DISTRIBUIR----|");
+			System.out.println("|A- Vida |"+healthStat+"|");
+			System.out.println("|B- Daño |"+damageStat+"|");
+			System.out.println("|C- Precisión |"+accuracyStat+"|");
+			System.out.println("|D- Agilidad |"+dodgeChanceStat+"|");
+			System.out.println("|E- Prob. critico |"+criticalChanceStat+"|");
+			System.out.print("|--> ");
+			String stat = input.next().toLowerCase();
+
+			switch (stat)	{
+			case "a":
+				healthStat++;
+				break;
+			case "b":
+				damageStat++;
+				break;
+			case "c":
+				accuracyStat++;
+				break;
+			case "d":
+				dodgeChanceStat++;
+				break;
+			case "e":
+				criticalChanceStat++;
+				break;
+			}
+			
+			points--;
+		}
+		
+		Player player = new Player(name, healthStat, damageStat, accuracyStat, dodgeChanceStat, criticalChanceStat);
+		
+		System.out.println("|----"+name.toUpperCase()+"----|");
+		System.out.println("|Vida--> "+player.getHealth());
+		System.out.println("|Daño--> "+player.getDamage());
+		System.out.println("|Precisión--> "+player.getAccuracy());
+		System.out.println("|Agilidad--> "+player.getDodgeChance()+"%");
+		System.out.println("|Prob. critico--> "+player.getCriticalChance()+"%");
+		
+		return player;
 	}
 
 //	public final Scanner entrada = new Scanner(System.in);
