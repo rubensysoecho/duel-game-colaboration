@@ -13,6 +13,10 @@ public class Character {
 
 	private boolean isDead;
 
+	public Character()	{
+		
+	}
+	
 	public Character(String name, int healthStat, int damageStat, int accuracyStat, int dodgeChanceStat,
 			int criticalChanceStat) {
 		this.name = name;

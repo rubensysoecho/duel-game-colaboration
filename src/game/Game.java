@@ -16,19 +16,21 @@ public class Game {
 //		tu.stats();
 
 		// Player has 10 point to assign
-		main_menu();
-		Player player = new Player("Maxim", 3, 3, 2, 1, 1);
-		player.showStats();
+		Player player = new Player();
+		main_menu(player);
+		}
+		
+		//Player player = new Player("Maxim", 3, 3, 2, 1, 1);
+		//player.showStats();
 
-		Enemy enemy = new Enemy("ENEMY", 1, 4, 5, 0, 0);
-		enemy.showStats();
+		//Enemy enemy = new Enemy("ENEMY", 1, 4, 5, 0, 0);
+		//enemy.showStats();
 
-		Duel duel = new Duel(player, enemy);
+		//Duel duel = new Duel(player, enemy);
 
-		duel.start();
-	}
+		//duel.start();
 	
-	public static Player main_menu()	{
+	public static void main_menu(Player player)	{
 		System.out.println("@@@@@@@@@@@@@@@@@");
 		System.out.println("@               @");
 		System.out.println("@   DUEL GAME   @");
@@ -43,6 +45,7 @@ public class Game {
 		System.out.println(" ---------------------------------------");
 		System.out.print("|Nombre: ");
 		String name = input.next();
+		player.setName(name);
 		
 		int points = 10;
 		int healthStat = 0, damageStat = 0, accuracyStat = 0, dodgeChanceStat = 0, criticalChanceStat = 0;
@@ -78,16 +81,17 @@ public class Game {
 			points--;
 		}
 		
-		Player player = new Player(name, healthStat, damageStat, accuracyStat, dodgeChanceStat, criticalChanceStat);
+		player.setHealthStat(healthStat); player.setDamageStat(damageStat);
+		player.setAccuracyStat(accuracyStat); player.setDodgeChanceStat(dodgeChanceStat);
+		player.setCriticalChanceStat(criticalChanceStat);
 		
-		System.out.println("|----"+name.toUpperCase()+"----|");
+		System.out.println("|<><><>"+name.toUpperCase()+"<><><>|");
 		System.out.println("|Vida--> "+player.getHealth());
 		System.out.println("|Daño--> "+player.getDamage());
 		System.out.println("|Precisión--> "+player.getAccuracy());
 		System.out.println("|Agilidad--> "+player.getDodgeChance()+"%");
 		System.out.println("|Prob. critico--> "+player.getCriticalChance()+"%");
 		
-		return player;
 	}
 
 //	public final Scanner entrada = new Scanner(System.in);
