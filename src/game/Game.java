@@ -17,10 +17,7 @@ public class Game {
 
 		// Player has 10 point to assign
 //		Player player = new Player();
-//		main_menu(player);
-
-		Player player = new Player("Maxim", 3, 3, 2, 1, 1);
-		player.showStats();
+		Player player = createPlayerCharacter();
 
 		while (!player.getIsDead()) {
 			Enemy enemy = generateEnemy();
@@ -49,7 +46,7 @@ public class Game {
 		int[] stats = new int[5];
 
 		int pointsLeft = maxPoints;
-		
+
 		while (pointsLeft > 0) {
 			for (int i = 0; i < stats.length; i++) {
 				int stat = generateStat(pointsLeft);
@@ -65,7 +62,7 @@ public class Game {
 		return (int) Math.round(Math.random() * maxValue);
 	}
 
-	public static void main_menu(Player player) {
+	public static Player createPlayerCharacter() {
 		System.out.println("@@@@@@@@@@@@@@@@@");
 		System.out.println("@               @");
 		System.out.println("@   DUEL GAME   @");
@@ -79,8 +76,7 @@ public class Game {
 		System.out.println("--------CREADOR DE PERSONAJES------------");
 		System.out.println(" ---------------------------------------");
 		System.out.print("|Nombre: ");
-		String name = input.next();
-		player.setName(name);
+		String name = input.nextLine();
 
 		int points = 10;
 		int healthStat = 0, damageStat = 0, accuracyStat = 0, dodgeChanceStat = 0, criticalChanceStat = 0;
@@ -93,7 +89,7 @@ public class Game {
 			System.out.println("|D- Agilidad |" + dodgeChanceStat + "|");
 			System.out.println("|E- Prob. critico |" + criticalChanceStat + "|");
 			System.out.print("|--> ");
-			String stat = input.next().toLowerCase();
+			String stat = input.nextLine().toLowerCase();
 
 			switch (stat) {
 			case "a":
@@ -115,15 +111,17 @@ public class Game {
 
 			points--;
 		}
+		
+		Player player = new Player(name, healthStat, damageStat, accuracyStat, dodgeChanceStat, criticalChanceStat);
 
 		System.out.println("|----ELIGE UN ARMA----|");
 		System.out.println("|A- Rifle de cerrojo |");
 		System.out.println("|B- Escopeta         |");
 		System.out.println("|C- Revolver         |");
 		System.out.print("|--> ");
-		String weapon = input.next().toLowerCase();
-		
-		switch (weapon)	{
+		String weapon = input.nextLine().toLowerCase();
+
+		switch (weapon) {
 		case "a":
 			Weapon rifle = new Weapon("Rifle de cerrojo", 0, 0);
 			player.addWeapon(rifle);
@@ -137,10 +135,10 @@ public class Game {
 			player.addWeapon(revolver);
 			break;
 		}
-		
+
 		System.out.print("Quieres equiparla ahora? [S/N] ");
 		String equipWeapon = input.next().toLowerCase();
-		
+
 		switch (equipWeapon) {
 		case "s":
 			player.equipWeapon();
@@ -149,11 +147,6 @@ public class Game {
 			break;
 		}
 
-		player.setHealthStat(healthStat);
-		player.setDamageStat(damageStat);
-		player.setAccuracyStat(accuracyStat);
-		player.setDodgeChanceStat(dodgeChanceStat);
-		player.setCriticalChanceStat(criticalChanceStat);
 		System.out.println("═══════════════════░▒░══════════════════\r\n"
 				+ "════════════▒▒▒▓███████████▓▒═══════════\r\n" + "════════▒██████████▓▓▓▓██▓████▓═════════\r\n"
 				+ "══════▒███████▓█▓▓▓█▓█▓███▓▓▓███════════\r\n" + "═════▓███▓██▓▓████▓██▓█▓▓▓███▓██▒═══════\r\n"
@@ -179,6 +172,8 @@ public class Game {
 				+ "▓█▓▓▓▒█░░▒═░██████▓█▓█▓█▓▓▓▒█▒▒▒▒▒██████\r\n" + "");
 
 		player.showStats();
+		
+		return player;
 
 	}
 
