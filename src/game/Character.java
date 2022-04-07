@@ -1,5 +1,6 @@
 package game;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Scanner;
 import java.util.Random;
@@ -10,7 +11,8 @@ public class Character {
 	private String name;
 	private int currentHealth, health, damage, accuracy, dodgeChance, criticalChance;
 	private int healthStat, damageStat, accuracyStat, dodgeChanceStat, criticalChanceStat;
-
+	private ArrayList<Weapon> weaponList = new ArrayList<Weapon>();
+	private Weapon equippedWeapon;
 	private boolean isDead;
 
 	public Character()	{
@@ -163,12 +165,21 @@ public class Character {
 		this.isDead = isDead;
 	}
 
+	public void addWeapon(Weapon weapon)	{
+		weaponList.add(weapon);
+	}
+	
+	public void equipWeapon() {
+		this.equippedWeapon = weaponList.get(0);
+	}
+	
 	public void showStats() {
 		System.out.println("|---" + this.name + "---|");
-		System.out.println("Vida: " + this.health);
-		System.out.println("Daño: " + this.damage);
-		System.out.println("Precisión: " + this.accuracy  + "%");
-		System.out.println("Oportunidad Esquivar: " + this.dodgeChance  + "%");
-		System.out.println("Probabilidad Golpe Crítico: " + this.criticalChance + "%");
+		System.out.println("|Vida: " + this.health);
+		System.out.println("|Daño: " + this.damage);
+		System.out.println("|Precisión: " + this.accuracy  + "%");
+		System.out.println("|Probabilidad Esquiva: " + this.dodgeChance  + "%");
+		System.out.println("|Probabilidad Golpe Crítico: " + this.criticalChance + "%");
+		System.out.println("|Arma equipada: " +this.equippedWeapon);
 	}
 }
