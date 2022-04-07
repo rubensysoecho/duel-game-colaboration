@@ -5,7 +5,7 @@ import java.util.Scanner;
 public class Game {
 
 	public static final Scanner input = new Scanner(System.in);
-	
+
 	public static void main(String[] args) {
 
 //		intro();
@@ -16,21 +16,54 @@ public class Game {
 //		tu.stats();
 
 		// Player has 10 point to assign
-		Player player = new Player();
-		main_menu(player);
+//		Player player = new Player();
+//		main_menu(player);
+
+		Player player = new Player("Maxim", 3, 3, 2, 1, 1);
+		player.showStats();
+
+		while (!player.getIsDead()) {
+			Enemy enemy = generateEnemy();
+			enemy.showStats();
+
+			Duel duel = new Duel(player, enemy);
+
+			duel.start();
 		}
-		
-		//Player player = new Player("Maxim", 3, 3, 2, 1, 1);
-		//player.showStats();
+	}
 
-		//Enemy enemy = new Enemy("ENEMY", 1, 4, 5, 0, 0);
-		//enemy.showStats();
+	private static Enemy generateEnemy() {
+		int enemyPoints = 10, health = 0, damage = 0, accuracy = 0, dodgeChance = 0, criticalChance = 0;
 
-		//Duel duel = new Duel(player, enemy);
+		int[] stats = generateStats(10);
 
-		//duel.start();
-	
-	public static void main_menu(Player player)	{
+		for (int i = 0; i < stats.length; i++) {
+			System.out.print(stats[i] + " ");
+		}
+
+		return new Enemy("Enemy", stats[0], stats[1], stats[2], stats[3], stats[4]);
+
+	}
+
+	private static int[] generateStats(int maxPoints) {
+		int[] stats = new int[5];
+
+		while (maxPoints > 0) {
+			for (int i = 0; i < stats.length; i++) {
+				int stat = generateStat(maxPoints);
+				stats[i] = stat;
+				maxPoints -= stat;
+			}
+		}
+
+		return stats;
+	}
+
+	private static int generateStat(int maxValue) {
+		return (int) Math.floor(Math.random() * maxValue);
+	}
+
+	public static void main_menu(Player player) {
 		System.out.println("@@@@@@@@@@@@@@@@@");
 		System.out.println("@               @");
 		System.out.println("@   DUEL GAME   @");
@@ -46,21 +79,21 @@ public class Game {
 		System.out.print("|Nombre: ");
 		String name = input.next();
 		player.setName(name);
-		
+
 		int points = 10;
 		int healthStat = 0, damageStat = 0, accuracyStat = 0, dodgeChanceStat = 0, criticalChanceStat = 0;
-		while (points > 0)	{
+		while (points > 0) {
 			System.out.println();
-			System.out.println("|----TIENES "+points+" PUNTOS PARA DISTRIBUIR----|");
-			System.out.println("|A- Vida |"+healthStat+"|");
-			System.out.println("|B- Daño |"+damageStat+"|");
-			System.out.println("|C- Precisión |"+accuracyStat+"|");
-			System.out.println("|D- Agilidad |"+dodgeChanceStat+"|");
-			System.out.println("|E- Prob. critico |"+criticalChanceStat+"|");
+			System.out.println("|----TIENES " + points + " PUNTOS PARA DISTRIBUIR----|");
+			System.out.println("|A- Vida |" + healthStat + "|");
+			System.out.println("|B- Daño |" + damageStat + "|");
+			System.out.println("|C- Precisión |" + accuracyStat + "|");
+			System.out.println("|D- Agilidad |" + dodgeChanceStat + "|");
+			System.out.println("|E- Prob. critico |" + criticalChanceStat + "|");
 			System.out.print("|--> ");
 			String stat = input.next().toLowerCase();
 
-			switch (stat)	{
+			switch (stat) {
 			case "a":
 				healthStat++;
 				break;
@@ -77,9 +110,10 @@ public class Game {
 				criticalChanceStat++;
 				break;
 			}
-			
+
 			points--;
 		}
+<<<<<<< Updated upstream
 		System.out.println("|----ELIGE UN ARMA----|");
 		System.out.println("|A- Rifle de cerrojo |");
 		System.out.println("|B- Escopeta         |");
@@ -118,6 +152,40 @@ public class Game {
 		player.setCriticalChanceStat(criticalChanceStat);
 		
 		player.showStats();
+=======
+
+		player.setHealthStat(healthStat);
+		player.setDamageStat(damageStat);
+		player.setAccuracyStat(accuracyStat);
+		player.setDodgeChanceStat(dodgeChanceStat);
+		player.setCriticalChanceStat(criticalChanceStat);
+		System.out.println("═══════════════════░▒░══════════════════\r\n"
+				+ "════════════▒▒▒▓███████████▓▒═══════════\r\n" + "════════▒██████████▓▓▓▓██▓████▓═════════\r\n"
+				+ "══════▒███████▓█▓▓▓█▓█▓███▓▓▓███════════\r\n" + "═════▓███▓██▓▓████▓██▓█▓▓▓███▓██▒═══════\r\n"
+				+ "═════▓██▓███▓█▓████████▓▓█████▓██═══════\r\n" + "═════▒█████████▓▓▓███████████████▒══════\r\n"
+				+ "═════▒██████▓█████▒▒▒▒▒██████████▒══════\r\n" + "═════▒███████▓█▓█▒═════░▒▓█▓▓▒▒██▒══════\r\n"
+				+ "═════▒█████████▓█▓░░▒▒░░░░░▒▒▒▒██▒══════\r\n" + "═════▒████████████▒░▒▒▒▒▒▒▒▒▒▒▒▓█▒══════\r\n"
+				+ "═════▒██████████▓▓▓▒▒▒▒▒▒▒▒▒▒▒░▓█▒══════\r\n" + "═════▒███████▓███▓▒▒▒▒▒▒▒▒▒▒▒▒░▒▓▒══════\r\n"
+				+ "═════▓█▒░░▓██▓█▓▒▒▒▒░░░░░░░░░░░▒█▒══════\r\n" + "═════▓█▒▒▒░▒███▒░░▒░░░▒▒▒▒▒█▓█████══════\r\n"
+				+ "═════██░▒██▒▒████▒░▓██████████████══════\r\n" + "═════▒█▒▒▒▓▒░▓█▓███████████▒▒█████══════\r\n"
+				+ "══════▒█═░░▒▒▒█▒▒▒▒█▓██████░═████═══════\r\n" + "═▒▓███▓██░░▒▒▒▒▒▒▒▒██████▓▒░░▒██▒═══════\r\n"
+				+ "██████████▓█▒▒▒▒▒▒▒▒█▓▒▒▒▒░░░═░█════════\r\n" + "█████████▓▓█▓▒▒▒▒▒▓▒▒▒▒▒▒▒▓▓▒░▒█════════\r\n"
+				+ "██████████▒▒▓▓▒▒▒▒▒▒▒▒▒▒░▒▓██▓▒█════════\r\n" + "▓▓█▓████▓▒▒▒▒▓▓▒▒▒▒▒▒▒▒▒▓▒▒▒▓▓▓██═══════\r\n"
+				+ "██▓▒██▒░░▒▓▒▒▒▓█▓▒▒▒▒▒▒█████▒▒▓███══════\r\n" + "█▓▒█▓░░▒▒▒▒▒▒▒▒▒▓▓▒▒▓▒▒░░░▒▒▒▒█████═════\r\n"
+				+ "▓▓██░░▒▒▒▒▒▒▒▒▓▒▒▓▓▓▒▒▒▒▒▓██▓▓██████════\r\n" + "▓██▒░▒▒▒▒▒▒▒▒▒▓▓▓▓▓██▓▒▒▒░▒░▒█████▓██═══\r\n"
+				+ "▓▓█▒░▒▒▒▒▒▒▓▒▒▒▓▓██████▓▒▒▒▒█████▓▓██░══\r\n" + "█▓█▒░▒▒▒▒▒▒▒▒▒▓▓▓▓████████▓▒████▓██▓██══\r\n"
+				+ "▓██▒░▒░▒░░░▒▒▒▒▒▒▒▓▓████▓▒▒▒███▓▓█▓▓▓█══\r\n" + "▒██░░░░░░░░▒▒▒▒▒▒▒▓▓███▓▓▒▒██▓█▓█▓▒█▓██░\r\n"
+				+ "▒█▒═░░░░░▒▒░▒▒▒▒▒▒▒▒▒▒▒▓▒▒██▓▓▒█▒▒█▓▒▒▓█\r\n" + "▒█▓░░░░░░░▒▒░▒▒▒▒░░░░▒▒░░██▒▓▒▓▒▒█▓▒▒▒▒█\r\n"
+				+ "▒▒█▒═░░░░░░░░░░░░░░░▒░═▒█▒▒▓▒▓█▓▓▒▒▒▒▒▒▓\r\n" + "█▒█▒═░░░░░░░░░░░░░░▒═░██▒▒▒▓▓▒▒▓▒▒▒▒▒▓▒▓\r\n"
+				+ "▓▓▒█░░░░░░░░░░░░░░░═▒█▒▒██▓▒▒▓▒▒▒▒▒▓▓▓▒▓\r\n" + "▓█▒█▒═░░░░░░░░▒░░░═▒█▒▒▓▓▓▓▓▒▒▓▒▒▓▓▓▓▒▓▓\r\n"
+				+ "▓█▓▒▒═░░░░░▒░▒░░▒═▒█▒▓▓▓▓▓█▓▒▒█▓▒▓▓▓▒▓▓▒\r\n" + "▓▓█▓▒░░░░░░░▒▒▒▒═░█▓▓▓▓▓▓▓▓▓▓▒▓██▒▒▒▓▓█▓\r\n"
+				+ "▓▓▓▓█▒═░░░░▒▒▒▒═░▓▓▓▓▓▒▓███▒▓█▒▒▓█▓▒▒▒▒▒\r\n" + "▓▓▒▓█▓═░░▒▒░▒▒═░██▓▓▓▓▓████▒▓▓██▓▓██▓▓▓▓\r\n"
+				+ "▓▒▒▓▒█░░▒▒░▒░═▒█████████▓███▓▓▓▓▓▓▓▓████\r\n" + "▓█▓▓▓█▓═▒░▒░░██████████████▓████████████\r\n"
+				+ "▓█▓▓▓▒█░░▒═░██████▓█▓█▓█▓▓▓▒█▒▒▒▒▒██████\r\n" + "");
+
+		player.showStats();
+
+>>>>>>> Stashed changes
 	}
 
 //	public final Scanner entrada = new Scanner(System.in);
