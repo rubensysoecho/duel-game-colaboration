@@ -35,7 +35,7 @@ public class Game {
 	private static Enemy generateEnemy() {
 		int enemyPoints = 10, health = 0, damage = 0, accuracy = 0, dodgeChance = 0, criticalChance = 0;
 
-		int[] stats = generateStats(10);
+		int[] stats = generateStats(enemyPoints);
 
 		for (int i = 0; i < stats.length; i++) {
 			System.out.print(stats[i] + " ");
@@ -48,11 +48,13 @@ public class Game {
 	private static int[] generateStats(int maxPoints) {
 		int[] stats = new int[5];
 
-		while (maxPoints > 0) {
+		int pointsLeft = maxPoints;
+		
+		while (pointsLeft > 0) {
 			for (int i = 0; i < stats.length; i++) {
-				int stat = generateStat(maxPoints);
-				stats[i] = stat;
-				maxPoints -= stat;
+				int stat = generateStat(pointsLeft);
+				stats[i] += stat;
+				pointsLeft -= stat;
 			}
 		}
 
@@ -60,7 +62,7 @@ public class Game {
 	}
 
 	private static int generateStat(int maxValue) {
-		return (int) Math.floor(Math.random() * maxValue);
+		return (int) Math.round(Math.random() * maxValue);
 	}
 
 	public static void main_menu(Player player) {

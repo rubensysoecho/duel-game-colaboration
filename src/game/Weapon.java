@@ -1,57 +1,39 @@
 package game;
 
 public class Weapon {
-	
-	public Weapon(String name, int damageBonus, int acurracyBonus) {
+
+	private String name;
+	private int accuracyBonus, criticalChanceBonus;
+
+	public Weapon(String name, int accuracyBonus, int criticalChanceBonus) {
 		super();
 		this.name = name;
-		this.damageBonus = damageBonus;
-		this.acurracyBonus = acurracyBonus;
+		this.accuracyBonus = accuracyBonus;
+		this.criticalChanceBonus = criticalChanceBonus;
 	}
-	
-	private String name;
-	private int damageBonus, acurracyBonus;
 
 	public String getName() {
 		return name;
 	}
-	
+
 	public void setName(String name) {
 		this.name = name;
-		switch (name) {
-		case "Rifle de cerrojo":
-			this.setDamageBonus(0);
-			this.setAcurracyBonus(0);
-			break;
-		case "Escopeta":
-			this.setDamageBonus(0);
-			this.setAcurracyBonus(0);
-			break;
-		case "Revolver":
-			this.setDamageBonus(0);
-			this.setAcurracyBonus(0);
-			break;
-		}	
 	}
-	
-	public int getDamageBonus() {
-		return damageBonus;
+
+	public int getAccuracyBonus() {
+		return accuracyBonus;
 	}
-	
-	public void setDamageBonus(int damageBonus) {
-		this.damageBonus = damageBonus;
+
+	public void setAccuracyBonus(int accuracyBonus) {
+		this.accuracyBonus = accuracyBonus;
 	}
-	
-	public int getAcurracyBonus() {
-		return acurracyBonus;
+
+	public int getCriticalChanceBonus() {
+		return criticalChanceBonus;
 	}
-	
-	public void setAcurracyBonus(int acurracyBonus) {
-		this.acurracyBonus = acurracyBonus;
+
+	public void setCriticalChanceBonus(int criticalChanceBonus) {
+		this.criticalChanceBonus = criticalChanceBonus;
 	}
-	
-	@Override
-	public String toString() {
-		return this.name;
-	}
+
 }
