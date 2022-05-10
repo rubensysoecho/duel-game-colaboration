@@ -174,6 +174,7 @@ public class Character {
 	}
 	
 	public void showStats() {
+		System.out.println();
 		System.out.println("|---" + this.name + "---|");
 		System.out.println("|Vida: " + this.health);
 		System.out.println("|Daño: " + this.damage);
